@@ -1,6 +1,6 @@
 class SubsController < ApplicationController
-  before_action :require_signed_in, only: [:show, :index, :new, :create]
-  before_action :require_user_own_sub, only: [:edit, :update]
+  before_action :require_signed_in!, only: [:show, :index, :new, :create]
+  before_action :require_ownership!, only: [:edit, :update]
 
   def index
     @subs = Sub.all
@@ -42,7 +42,7 @@ class SubsController < ApplicationController
 
   private
 
-  def require_user_own_sub!
+  def require_ownership!
     return if Sub.find(params[:id]).moderator == current_user
     render json: 'Forbidden', status: :forbidden
   end

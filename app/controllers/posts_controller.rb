@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  before_action :require_signed_in!, only: [:new, :create]
+  before_action :require_ownership!, only: [:edit, :update]
+
   def new
     @post = Post.new
     render :new
@@ -40,6 +43,11 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def require_ownership!
+    return if Post.find(params[:id]).author == current_user
+    redirect_to json: 'Forbidden', status: :forbidden
+  end
 
   def post_params
     params.require(:post).permit(:title, :url, :content, :sub_id, :author_id)
