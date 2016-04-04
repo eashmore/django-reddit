@@ -10,7 +10,7 @@ class CreatePosts < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_index :posts, :sub_id, unique: true
-    add_index :posts, :author_id, unique: true
+    add_index :posts, :sub_id
+    add_index :posts, :author_id
   end
 end

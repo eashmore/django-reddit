@@ -8,11 +8,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.new(post_params)
+    @post = Post.new(post_params)
+    @post.author_id = current_user.id
     if @post.save
-      redirect_to @post
+      redirect_to @post.sub
     else
-      render :new
+      render @post.sub
     end
   end
 
@@ -50,6 +51,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :url, :content, :sub_id, :author_id)
+    params.require(:post).permit(:title, :url, :content, :sub_id)
   end
 end

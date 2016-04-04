@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20160404203538) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "posts", ["author_id"], name: "index_posts_on_author_id", unique: true
-  add_index "posts", ["sub_id"], name: "index_posts_on_sub_id", unique: true
+  add_index "posts", ["author_id"], name: "index_posts_on_author_id"
+  add_index "posts", ["sub_id"], name: "index_posts_on_sub_id"
 
   create_table "subs", force: :cascade do |t|
     t.string   "title",        null: false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20160404203538) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "subs", ["moderator_id"], name: "index_subs_on_moderator_id", unique: true
+  add_index "subs", ["moderator_id"], name: "index_subs_on_moderator_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name",            null: false
