@@ -1,0 +1,6 @@
+<%= link_to "New Sub", new_sub_url %>
+<hr>
+
+<% @subs.each do |sub| %>
+  <%= link_to sub.title, sub %>
+<% end %>

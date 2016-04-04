@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :subs, except: [:destroy]
   resources :posts, except: [:index]
 
-  root to: 'sessions#new'
+  root to: 'subs#index'
 end

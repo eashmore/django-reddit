@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :session_token, :name, uniqueness: true
 
+  has_many :subs
+  has_many :posts
+
   def self.find_by_credentials(name, password)
     user = User.find_by(name: name)
     user.try(:is_password?, password) ? user : nil
