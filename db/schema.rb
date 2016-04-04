@@ -11,7 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403040451) do
+ActiveRecord::Schema.define(version: 20160404203538) do
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title",      null: false
+    t.string   "url"
+    t.string   "content"
+    t.integer  "sub_id",     null: false
+    t.integer  "author_id",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "posts", ["author_id"], name: "index_posts_on_author_id", unique: true
+  add_index "posts", ["sub_id"], name: "index_posts_on_sub_id", unique: true
+
+  create_table "subs", force: :cascade do |t|
+    t.string   "title",        null: false
+    t.string   "description",  null: false
+    t.integer  "moderator_id", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "subs", ["moderator_id"], name: "index_subs_on_moderator_id", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "name",            null: false

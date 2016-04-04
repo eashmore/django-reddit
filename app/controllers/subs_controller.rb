@@ -48,6 +48,6 @@ class SubsController < ApplicationController
   end
 
   def sub_params
-    params.require(:sub).permit(:name, :description)
+    params.require(:sub).permit(:name, :description, :moderator_id)
   end
 end
