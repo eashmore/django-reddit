@@ -3,9 +3,8 @@
 <p><%= @sub.description %></p>
 
 <%= link_to "Edit Sub", edit_sub_url %>
+<%= link_to "New Post", new_post_url %>
 <hr>
-
-<%= render "posts/new", sub_id: @sub.id %>
 
 <% @sub.posts.each do |post| %>
   <%= link_to post.title, post_url(post) %>
